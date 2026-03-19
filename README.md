@@ -60,6 +60,22 @@ Run tests:
 make test
 ```
 
+## 🎬 Preview Video
+
+Left-aligned on purpose, because the dashboard already has enough drama without the README doing center-stage choreography.
+
+<div style="max-width: 960px;">
+  <iframe
+    width="100%"
+    style="aspect-ratio: 16 / 9;"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="Salary Management Kata Preview"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+
 ## ⚙️ Environment Variables
 
 Use [`.env.example`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/.env.example) as the template.
@@ -482,3 +498,11 @@ The guardrails were:
 - human review of logic decisions
 
 So yes, the AI helped build the machine, but the tests are the suspicious accountant making sure it does not start freelancing new business rules at 2 AM.
+
+## 🖼️ Screenshots
+
+Original-size, left-aligned images live in [`images/`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/images).
+
+<img src="images/11.jpg" alt="Screenshot 11" />
+
+<img src="images/12.jpg" alt="Screenshot 12" />
