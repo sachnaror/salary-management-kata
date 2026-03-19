@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# Local environment files
+.env.local
+
+# SQLite data and logs
+*.sqlite3
+salary_management.db
+data/*.db
+logs/*.log
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

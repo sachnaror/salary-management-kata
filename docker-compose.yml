@@ -1,0 +1,14 @@
+services:
+  salary-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: salary-management-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped

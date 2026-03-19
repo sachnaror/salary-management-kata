@@ -1,0 +1,13 @@
+.git
+.gitignore
+.venv
+__pycache__
+.pytest_cache
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+salary_management.db
+logs/*.log
+images/*
+!images/.gitkeep

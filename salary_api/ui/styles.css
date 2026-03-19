@@ -1,0 +1,17 @@
+body {
+  background: linear-gradient(180deg, #f8fbff, #eef3f9);
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.response-box {
+  min-height: 180px;
+  max-height: 360px;
+  overflow: auto;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.9rem;
+}
