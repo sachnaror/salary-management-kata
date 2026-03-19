@@ -1,5 +1,6 @@
 services:
   salary-api:
+    image: schnarordocker/salary-management-kata:latest
     build:
       context: .
       dockerfile: Dockerfile

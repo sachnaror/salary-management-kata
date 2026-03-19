@@ -452,6 +452,21 @@ The status changes automatically when answers are saved through `POST /open-ques
 
 ## 📦 Docker
 
+### Pull From Docker Hub
+
+If you just want to run the app without cloning the repo first:
+
+```bash
+docker pull schnarordocker/salary-management-kata:latest
+docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
+```
+
+Open:
+- `http://127.0.0.1:8000/` : dashboard UI
+- `http://127.0.0.1:8000/docs` : Swagger
+
+### Run With Docker Compose
+
 Build and run:
 
 ```bash
