@@ -13,7 +13,19 @@ const questionsModalMeta = document.getElementById("questionsModalMeta");
 const questionsModalContent = document.getElementById("questionsModalContent");
 const previewModalContent = document.getElementById("previewModalContent");
 const finalApproveBtn = document.getElementById("finalApproveBtn");
+const changeRequestForm = document.getElementById("createChangeRequestForm");
 let activePreviewRequestId = null;
+
+function todayIsoDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function setDefaultChangeRequestDate() {
+  const dateInput = changeRequestForm.elements.namedItem("request_date");
+  if (dateInput && !dateInput.value) {
+    dateInput.value = todayIsoDate();
+  }
+}
 
 function showResponse(title, data) {
   responseBox.textContent = `${title}\n\n${JSON.stringify(data, null, 2)}`;
@@ -273,7 +285,7 @@ async function loadChangeRequest(id, useModal = false) {
 
 document.getElementById("refreshEmployeesBtn").addEventListener("click", refreshEmployees);
 
-document.getElementById("createChangeRequestForm").addEventListener("submit", async (e) => {
+changeRequestForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = new FormData(e.currentTarget);
   const result = await apiCall("/change-requests", {
@@ -287,6 +299,7 @@ document.getElementById("createChangeRequestForm").addEventListener("submit", as
   showResponse("POST /change-requests", { status: result.status, body: result.payload });
   if (result.ok) {
     e.currentTarget.reset();
+    setDefaultChangeRequestDate();
     renderOpenQuestions(result.payload);
     await refreshChangeRequests();
   }
@@ -312,6 +325,8 @@ finalApproveBtn.addEventListener("click", async () => {
     await refreshChangeRequests();
   }
 });
+
+setDefaultChangeRequestDate();
 
 document.getElementById("createEmployeeForm").addEventListener("submit", async (e) => {
   e.preventDefault();

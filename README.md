@@ -126,9 +126,9 @@ Local development Swagger and GitHub Pages Swagger are separate:
 - public GitHub Pages Swagger: `https://sachnaror.github.io/salary-management-kata/`
 
 ### What Was Added
-- [`scripts/export_openapi.py`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/scripts/export_openapi.py)
+- [`scripts/export_openapi.py`](./scripts/export_openapi.py)
   - exports the FastAPI OpenAPI schema directly from the app
-- [`.github/workflows/publish-api-docs.yml`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/.github/workflows/publish-api-docs.yml)
+- [`.github/workflows/publish-api-docs.yml`](./.github/workflows/publish-api-docs.yml)
   - builds the docs on GitHub Actions and publishes them to GitHub Pages
 
 ### Local Generation
@@ -157,7 +157,7 @@ This gives you:
 
 ## ⚙️ Environment Variables
 
-Use [`.env.example`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/.env.example) as the template.
+Use [`.env.example`](./.env.example) as the template.
 
 ### Core App
 - `APP_NAME` : app title
@@ -434,29 +434,29 @@ So yes, the tests are checking logic, not just code that happens to exist.
 
 ## 🧠 Rulechain Folder: What Each File Does
 
-See [rulechain/README.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/README.md) for the short version. Here is the practical version:
+See [rulechain/README.md](./rulechain/README.md) for the short version. Here is the practical version:
 
-- [IMPLEMENTATION_PROTOCOL.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/IMPLEMENTATION_PROTOCOL.md)
+- [IMPLEMENTATION_PROTOCOL.md](./rulechain/IMPLEMENTATION_PROTOCOL.md)
   - the execution contract
   - says the system must read docs first, ask questions on conflicts, then do TDD
 
-- [DOMAIN_RULES.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/DOMAIN_RULES.md)
+- [DOMAIN_RULES.md](./rulechain/DOMAIN_RULES.md)
   - the business rule source of truth
   - create/update rules, salary rules, and known logic notes live here
 
-- [DECISION_LOG.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/DECISION_LOG.md)
+- [DECISION_LOG.md](./rulechain/DECISION_LOG.md)
   - records accepted product decisions
   - helpful when future requests try to contradict older choices
 
-- [TEST_MATRIX.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/TEST_MATRIX.md)
+- [TEST_MATRIX.md](./rulechain/TEST_MATRIX.md)
   - maps business rules to tests
   - helps answer: “Did we really test this?”
 
-- [OPEN_QUESTIONS.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/OPEN_QUESTIONS.md)
+- [OPEN_QUESTIONS.md](./rulechain/OPEN_QUESTIONS.md)
   - central summary of unresolved questions
   - gets synchronized from change-request data
 
-- [CHANGE_IMPACT.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/CHANGE_IMPACT.md)
+- [CHANGE_IMPACT.md](./rulechain/CHANGE_IMPACT.md)
   - pre-change checklist for possible regressions and conflicts
 
 - `CHANGE_REQUESTS/*.md`
@@ -589,7 +589,7 @@ So yes, the AI helped build the machine, but the tests are the suspicious accoun
 
 ## 🖼️ Screenshots
 
-Original-size, left-aligned images live in [`images/`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/images).
+Original-size, left-aligned images live in [`images/`](./images/).
 
 <img src="images/12.jpg" alt="Screenshot 13" />
 
