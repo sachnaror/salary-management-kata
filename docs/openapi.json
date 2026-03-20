@@ -1,0 +1,1175 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Salary Management API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/employees": {
+      "get": {
+        "summary": "List Employees",
+        "operationId": "list_employees_employees_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeResponse"
+                  },
+                  "type": "array",
+                  "title": "Response List Employees Employees Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Employee",
+        "operationId": "create_employee_employees_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/{employee_id}": {
+      "get": {
+        "summary": "Get Employee",
+        "operationId": "get_employee_employees__employee_id__get",
+        "parameters": [
+          {
+            "name": "employee_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Employee Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Employee",
+        "operationId": "update_employee_employees__employee_id__put",
+        "parameters": [
+          {
+            "name": "employee_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Employee Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Employee",
+        "operationId": "delete_employee_employees__employee_id__delete",
+        "parameters": [
+          {
+            "name": "employee_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Employee Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/{employee_id}/salary/calculate": {
+      "get": {
+        "summary": "Calculate Salary",
+        "operationId": "calculate_salary_employees__employee_id__salary_calculate_get",
+        "parameters": [
+          {
+            "name": "employee_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Employee Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalaryCalculationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/salary-metrics/country/{country}": {
+      "get": {
+        "summary": "Salary Metrics By Country",
+        "operationId": "salary_metrics_by_country_salary_metrics_country__country__get",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Country"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountrySalaryMetricsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/salary-metrics/job-title/{job_title}": {
+      "get": {
+        "summary": "Salary Metrics By Job Title",
+        "operationId": "salary_metrics_by_job_title_salary_metrics_job_title__job_title__get",
+        "parameters": [
+          {
+            "name": "job_title",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Title"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobTitleSalaryMetricsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-requests": {
+      "get": {
+        "summary": "List Change Requests",
+        "operationId": "list_change_requests_change_requests_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ChangeRequestResponse"
+                  },
+                  "type": "array",
+                  "title": "Response List Change Requests Change Requests Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Change Request",
+        "operationId": "create_change_request_change_requests_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeRequestCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-requests/{change_request_id}": {
+      "get": {
+        "summary": "Get Change Request",
+        "operationId": "get_change_request_change_requests__change_request_id__get",
+        "parameters": [
+          {
+            "name": "change_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Change Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-requests/{change_request_id}/questions": {
+      "get": {
+        "summary": "List Open Questions",
+        "operationId": "list_open_questions_change_requests__change_request_id__questions_get",
+        "parameters": [
+          {
+            "name": "change_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Change Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OpenQuestionResponse"
+                  },
+                  "title": "Response List Open Questions Change Requests  Change Request Id  Questions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/open-questions/{question_id}/answer": {
+      "post": {
+        "summary": "Answer Open Question",
+        "operationId": "answer_open_question_open_questions__question_id__answer_post",
+        "parameters": [
+          {
+            "name": "question_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Question Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenQuestionAnswerCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenQuestionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-requests/{change_request_id}/preview": {
+      "post": {
+        "summary": "Preview Change Request",
+        "operationId": "preview_change_request_change_requests__change_request_id__preview_post",
+        "parameters": [
+          {
+            "name": "change_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Change Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeRequestPreviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get Change Request Preview",
+        "operationId": "get_change_request_preview_change_requests__change_request_id__preview_get",
+        "parameters": [
+          {
+            "name": "change_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Change Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeRequestPreviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-requests/{change_request_id}/reject": {
+      "post": {
+        "summary": "Reject Change Request",
+        "operationId": "reject_change_request_change_requests__change_request_id__reject_post",
+        "parameters": [
+          {
+            "name": "change_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Change Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/change-requests/{change_request_id}/approve": {
+      "post": {
+        "summary": "Approve Change Request",
+        "operationId": "approve_change_request_change_requests__change_request_id__approve_post",
+        "parameters": [
+          {
+            "name": "change_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Change Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChangeRequestCreate": {
+        "properties": {
+          "request_date": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Request Date"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Topic"
+          },
+          "request_summary": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Request Summary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_date",
+          "topic",
+          "request_summary"
+        ],
+        "title": "ChangeRequestCreate"
+      },
+      "ChangeRequestPreviewResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "change_request_id": {
+            "type": "integer",
+            "title": "Change Request Id"
+          },
+          "files_to_change": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Files To Change"
+          },
+          "tests_to_update": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tests To Update"
+          },
+          "docs_to_update": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Docs To Update"
+          },
+          "conflict_warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conflict Warnings"
+          },
+          "diff_text": {
+            "type": "string",
+            "title": "Diff Text"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "change_request_id",
+          "files_to_change",
+          "tests_to_update",
+          "docs_to_update",
+          "conflict_warnings",
+          "diff_text",
+          "created_at",
+          "updated_at",
+          "status"
+        ],
+        "title": "ChangeRequestPreviewResponse"
+      },
+      "ChangeRequestResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "request_date": {
+            "type": "string",
+            "title": "Request Date"
+          },
+          "topic": {
+            "type": "string",
+            "title": "Topic"
+          },
+          "request_summary": {
+            "type": "string",
+            "title": "Request Summary"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "open_questions": {
+            "items": {
+              "$ref": "#/components/schemas/OpenQuestionResponse"
+            },
+            "type": "array",
+            "title": "Open Questions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "request_date",
+          "topic",
+          "request_summary",
+          "status",
+          "created_at",
+          "updated_at",
+          "open_questions"
+        ],
+        "title": "ChangeRequestResponse"
+      },
+      "CountrySalaryMetricsResponse": {
+        "properties": {
+          "country": {
+            "type": "string",
+            "title": "Country"
+          },
+          "min_salary": {
+            "type": "number",
+            "title": "Min Salary"
+          },
+          "max_salary": {
+            "type": "number",
+            "title": "Max Salary"
+          },
+          "avg_salary": {
+            "type": "number",
+            "title": "Avg Salary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "country",
+          "min_salary",
+          "max_salary",
+          "avg_salary"
+        ],
+        "title": "CountrySalaryMetricsResponse"
+      },
+      "EmployeeCreate": {
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Full Name"
+          },
+          "job_title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Job Title"
+          },
+          "country": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Country"
+          },
+          "salary": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Salary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "full_name",
+          "job_title",
+          "country",
+          "salary"
+        ],
+        "title": "EmployeeCreate"
+      },
+      "EmployeeResponse": {
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Full Name"
+          },
+          "job_title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Job Title"
+          },
+          "country": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Country"
+          },
+          "salary": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Salary"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "full_name",
+          "job_title",
+          "country",
+          "salary",
+          "id"
+        ],
+        "title": "EmployeeResponse"
+      },
+      "EmployeeUpdate": {
+        "properties": {
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "job_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Title"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country"
+          },
+          "salary": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Salary"
+          }
+        },
+        "type": "object",
+        "title": "EmployeeUpdate"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "JobTitleSalaryMetricsResponse": {
+        "properties": {
+          "job_title": {
+            "type": "string",
+            "title": "Job Title"
+          },
+          "avg_salary": {
+            "type": "number",
+            "title": "Avg Salary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_title",
+          "avg_salary"
+        ],
+        "title": "JobTitleSalaryMetricsResponse"
+      },
+      "OpenQuestionAnswerCreate": {
+        "properties": {
+          "answered_by": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Answered By"
+          },
+          "answer_text": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Answer Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "answered_by",
+          "answer_text"
+        ],
+        "title": "OpenQuestionAnswerCreate"
+      },
+      "OpenQuestionAnswerHistoryResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "open_question_id": {
+            "type": "integer",
+            "title": "Open Question Id"
+          },
+          "answered_by": {
+            "type": "string",
+            "title": "Answered By"
+          },
+          "answer_text": {
+            "type": "string",
+            "title": "Answer Text"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "open_question_id",
+          "answered_by",
+          "answer_text",
+          "created_at"
+        ],
+        "title": "OpenQuestionAnswerHistoryResponse"
+      },
+      "OpenQuestionResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "change_request_id": {
+            "type": "integer",
+            "title": "Change Request Id"
+          },
+          "question_text": {
+            "type": "string",
+            "title": "Question Text"
+          },
+          "why_this_matters": {
+            "type": "string",
+            "title": "Why This Matters"
+          },
+          "blocked_areas": {
+            "type": "string",
+            "title": "Blocked Areas"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "answer_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Text"
+          },
+          "answered_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answered By"
+          },
+          "answered_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answered At"
+          },
+          "answer_history": {
+            "items": {
+              "$ref": "#/components/schemas/OpenQuestionAnswerHistoryResponse"
+            },
+            "type": "array",
+            "title": "Answer History",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "change_request_id",
+          "question_text",
+          "why_this_matters",
+          "blocked_areas",
+          "status"
+        ],
+        "title": "OpenQuestionResponse"
+      },
+      "SalaryCalculationResponse": {
+        "properties": {
+          "employee_id": {
+            "type": "integer",
+            "title": "Employee Id"
+          },
+          "gross_salary": {
+            "type": "number",
+            "title": "Gross Salary"
+          },
+          "deduction": {
+            "type": "number",
+            "title": "Deduction"
+          },
+          "net_salary": {
+            "type": "number",
+            "title": "Net Salary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "employee_id",
+          "gross_salary",
+          "deduction",
+          "net_salary"
+        ],
+        "title": "SalaryCalculationResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

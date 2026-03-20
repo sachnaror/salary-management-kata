@@ -11,9 +11,9 @@
 
 ### Conflict Check
 - Existing rules reviewed:
-  - docs/DOMAIN_RULES.md
-  - docs/DECISION_LOG.md
-  - docs/TEST_MATRIX.md
+  - rulechain/DOMAIN_RULES.md
+  - rulechain/DECISION_LOG.md
+  - rulechain/TEST_MATRIX.md
 - Existing tests reviewed:
   - tests relevant to the affected area
 - Conflicts found:
@@ -43,7 +43,7 @@
 - Refactor: not started
 
 ### Documentation Files To Update After Answers
-- docs/DOMAIN_RULES.md
-- docs/DECISION_LOG.md
-- docs/TEST_MATRIX.md
+- rulechain/DOMAIN_RULES.md
+- rulechain/DECISION_LOG.md
+- rulechain/TEST_MATRIX.md
 - active change request file

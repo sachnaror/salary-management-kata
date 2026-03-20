@@ -3,7 +3,7 @@
 This file records product and implementation decisions that affect future work.
 
 ## 2026-03-20
-- Chosen project memory model: documentation-driven workflow using files in `docs/`.
+- Chosen project memory model: documentation-driven workflow using files in `rulechain/`.
 - Chosen TDD gate: every non-trivial change must follow red -> green -> refactor.
 - Chosen clarification rule: if a request can conflict with existing logic, questions must be raised before implementation.
 - Chosen update behavior: `PUT /employees/{employee_id}` supports partial updates.

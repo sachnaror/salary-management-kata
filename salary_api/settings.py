@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     )
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
     log_file: str = Field(default="./logs/app.log", alias="LOG_FILE")
-    docs_root: str = Field(default="./docs", alias="DOCS_ROOT")
+    docs_root: str = Field(default="./rulechain", alias="DOCS_ROOT")
     llm_analysis_enabled: bool = Field(default=False, alias="LLM_ANALYSIS_ENABLED")
     llm_provider: str = Field(default="openai", alias="LLM_PROVIDER")
     openai_api_key: str = Field(default="", alias="OPENAI_API_KEY")

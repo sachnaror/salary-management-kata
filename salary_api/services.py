@@ -210,9 +210,9 @@ def generate_preview_plan(change_request: ChangeRequest) -> dict[str, list[str] 
     files_to_change = ["salary_api/main.py", "salary_api/services.py"]
     tests_to_update = ["tests/test_change_requests.py"]
     docs_to_update = [
-        "docs/DOMAIN_RULES.md",
-        "docs/DECISION_LOG.md",
-        "docs/TEST_MATRIX.md",
+        "rulechain/DOMAIN_RULES.md",
+        "rulechain/DECISION_LOG.md",
+        "rulechain/TEST_MATRIX.md",
         "README.md",
     ]
     conflict_warnings = []
@@ -285,9 +285,9 @@ def create_change_request_markdown(change_request: ChangeRequest) -> None:
             "",
             "### Conflict Check",
             "- Existing rules reviewed:",
-            "  - docs/DOMAIN_RULES.md",
-            "  - docs/DECISION_LOG.md",
-            "  - docs/TEST_MATRIX.md",
+            "  - rulechain/DOMAIN_RULES.md",
+            "  - rulechain/DECISION_LOG.md",
+            "  - rulechain/TEST_MATRIX.md",
             "- Existing tests reviewed:",
             "  - tests relevant to the affected area",
             "- Conflicts found:",
@@ -302,9 +302,9 @@ def create_change_request_markdown(change_request: ChangeRequest) -> None:
             "- Refactor: not started",
             "",
             "### Documentation Files To Update After Answers",
-            "- docs/DOMAIN_RULES.md",
-            "- docs/DECISION_LOG.md",
-            "- docs/TEST_MATRIX.md",
+            "- rulechain/DOMAIN_RULES.md",
+            "- rulechain/DECISION_LOG.md",
+            "- rulechain/TEST_MATRIX.md",
             "- active change request file",
             "",
         ]

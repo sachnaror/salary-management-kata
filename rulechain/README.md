@@ -1,6 +1,6 @@
 # Docs Brain
 
-This folder is the long-term memory of the project. The code does the work, but `docs/` remembers why.
+This folder is the long-term memory of the project. The code does the work, but `rulechain/` remembers why.
 
 ## Mission
 - catch conflicts before implementation

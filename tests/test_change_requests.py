@@ -9,7 +9,7 @@ def test_create_change_request_generates_open_questions_and_syncs_markdown(
     client: TestClient,
     tmp_path: Path,
 ) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     response = client.post(
         "/change-requests",
@@ -49,7 +49,7 @@ def test_answering_questions_updates_records_and_markdown(
     client: TestClient,
     tmp_path: Path,
 ) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     created = client.post(
         "/change-requests",
@@ -95,7 +95,7 @@ def test_answering_questions_updates_records_and_markdown(
 
 
 def test_get_change_requests_returns_existing_records(client: TestClient, tmp_path: Path) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     client.post(
         "/change-requests",
@@ -116,7 +116,7 @@ def test_get_change_requests_returns_existing_records(client: TestClient, tmp_pa
 
 
 def test_preview_requires_all_questions_answered(client: TestClient, tmp_path: Path) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     created = client.post(
         "/change-requests",
@@ -133,7 +133,7 @@ def test_preview_requires_all_questions_answered(client: TestClient, tmp_path: P
 
 
 def test_preview_and_reject_flow(client: TestClient, tmp_path: Path) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     created = client.post(
         "/change-requests",
@@ -172,7 +172,7 @@ def test_preview_and_reject_flow(client: TestClient, tmp_path: Path) -> None:
 
 
 def test_open_question_cannot_be_answered_twice(client: TestClient, tmp_path: Path) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     created = client.post(
         "/change-requests",
@@ -208,7 +208,7 @@ def test_change_request_generates_contextual_questions_for_name_validation(
     client: TestClient,
     tmp_path: Path,
 ) -> None:
-    settings.docs_root = str(tmp_path / "docs")
+    settings.docs_root = str(tmp_path / "rulechain")
 
     response = client.post(
         "/change-requests",

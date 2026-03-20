@@ -19,7 +19,7 @@ In short: it manages employees, calculates deductions, shows salary metrics, and
 - `Poetry`
 - `Pytest`
 - `Docker / Docker Compose`
-- `Markdown-powered project memory in docs/`
+- `Markdown-powered project memory in rulechain/`
 
 ## 🗂️ Project Layout
 
@@ -27,7 +27,8 @@ In short: it manages employees, calculates deductions, shows salary metrics, and
 salary-management-kata/
   salary_api/           # FastAPI app, services, UI files
   tests/                # automated tests
-  docs/                 # project memory and change-request workflow docs
+  docs/                 # GitHub Pages Swagger site assets
+  rulechain/            # project memory and change-request workflow docs
   data/                 # SQLite database files
   logs/                 # runtime logs
   images/               # screenshots / diagrams
@@ -60,21 +61,66 @@ Run tests:
 make test
 ```
 
+## 🐳 Docker Hub
+
+Published image:
+- [schnarordocker/salary-management-kata](https://hub.docker.com/r/schnarordocker/salary-management-kata)
+
+Overview:
+- Container image for the Salary Management Kata FastAPI app with the dashboard UI, employee CRUD APIs, salary metrics, and the rulechain-based change-request workflow.
+
+Tags:
+- `latest` : current default image used by `docker-compose.yml`
+- future version tags can follow release numbers such as `v1.0.0`
+
+Run it directly:
+
+```bash
+docker pull schnarordocker/salary-management-kata:latest
+docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
+```
+
 ## 🎬 Preview Video
 
 Left-aligned on purpose, because the dashboard already has enough drama without the README doing center-stage choreography.
 
-<div style="max-width: 960px;">
-  <iframe
-    width="100%"
-    style="aspect-ratio: 16 / 9;"
-    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    title="Salary Management Kata Preview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen>
-  </iframe>
-</div>
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+  <img src="./images/12.jpg" alt="Watch Salary Management Kata Preview on YouTube" width="600" style="max-width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;" />
+</a>
+
+## 📚 Public Swagger Docs With GitHub Pages
+
+This repo can now publish static API docs for everyone, without asking reviewers to run the app locally first.
+
+### What Was Added
+- [`scripts/export_openapi.py`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/scripts/export_openapi.py)
+  - exports the FastAPI OpenAPI schema directly from the app
+- [`.github/workflows/publish-api-docs.yml`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/.github/workflows/publish-api-docs.yml)
+  - builds the docs on GitHub Actions and publishes them to GitHub Pages
+
+### Local Generation
+
+```bash
+poetry run python scripts/export_openapi.py
+```
+
+Generated files:
+- `docs/openapi.json`
+- `docs/index.html`
+
+### How Public Hosting Works
+1. Push your repo to GitHub.
+2. In GitHub, enable **Pages** and choose **GitHub Actions** as the source.
+3. On every push to `main`, GitHub Actions:
+   - installs dependencies
+   - generates the OpenAPI spec from the real FastAPI app
+   - publishes `docs/` as a static site
+4. Your public docs URL will be:
+   - `https://<your-github-username>.github.io/<your-repo-name>/`
+
+This gives you:
+- public Swagger UI
+- the raw OpenAPI JSON for tooling, imports, and future client generation
 
 ## ⚙️ Environment Variables
 
@@ -132,7 +178,7 @@ Current reality check:
 - the system generates open questions
 - stakeholder answers the questions
 - answers are stored in SQLite
-- markdown files in `docs/` are synchronized from those records
+- markdown files in `rulechain/` are synchronized from those records
 
 That means the app is part payroll demo, part requirements traffic cop, and part historian with very strong feelings about ambiguity.
 
@@ -252,7 +298,7 @@ At `http://127.0.0.1:8000/` the UI now has:
 3. Submit the business input.
 4. The app stores the request in SQLite.
 5. The app runs the local analyzer and generates context-aware open questions.
-6. The app writes the request into `docs/CHANGE_REQUESTS/`.
+6. The app writes the request into `rulechain/CHANGE_REQUESTS/`.
 
 ### Stakeholder Path
 1. Open the dashboard table.
@@ -353,38 +399,32 @@ That means the suite checks both:
 
 So yes, the tests are checking logic, not just code that happens to exist.
 
-## 🧠 Docs Folder: What Each File Does
+## 🧠 Rulechain Folder: What Each File Does
 
-See [docs/README.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/README.md) for the short version. Here is the practical version:
+See [rulechain/README.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/README.md) for the short version. Here is the practical version:
 
-- [IMPLEMENTATION_PROTOCOL.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/IMPLEMENTATION_PROTOCOL.md)
+- [IMPLEMENTATION_PROTOCOL.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/IMPLEMENTATION_PROTOCOL.md)
   - the execution contract
   - says the system must read docs first, ask questions on conflicts, then do TDD
 
-- [DOMAIN_RULES.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/DOMAIN_RULES.md)
+- [DOMAIN_RULES.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/DOMAIN_RULES.md)
   - the business rule source of truth
   - create/update rules, salary rules, and known logic notes live here
 
-- [DECISION_LOG.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/DECISION_LOG.md)
+- [DECISION_LOG.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/DECISION_LOG.md)
   - records accepted product decisions
   - helpful when future requests try to contradict older choices
 
-- [TEST_MATRIX.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/TEST_MATRIX.md)
+- [TEST_MATRIX.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/TEST_MATRIX.md)
   - maps business rules to tests
   - helps answer: “Did we really test this?”
 
-- [OPEN_QUESTIONS.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/OPEN_QUESTIONS.md)
+- [OPEN_QUESTIONS.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/OPEN_QUESTIONS.md)
   - central summary of unresolved questions
   - gets synchronized from change-request data
 
-- [CHANGE_IMPACT.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/CHANGE_IMPACT.md)
+- [CHANGE_IMPACT.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/rulechain/CHANGE_IMPACT.md)
   - pre-change checklist for possible regressions and conflicts
-
-- [CHANGE_REQUESTS/README.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/CHANGE_REQUESTS/README.md)
-  - explains how one file per request should be organized
-
-- [CHANGE_REQUESTS/TEMPLATE.md](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/docs/CHANGE_REQUESTS/TEMPLATE.md)
-  - reusable structure for a new change request
 
 - `CHANGE_REQUESTS/*.md`
   - one markdown record per change request
@@ -406,7 +446,7 @@ Here is the full loop:
 
 4. The app stores those questions in SQLite.
 
-5. The app writes a markdown file in `docs/CHANGE_REQUESTS/`.
+5. The app writes a markdown file in `rulechain/CHANGE_REQUESTS/`.
 
 6. The dashboard table shows the request with:
    - ID
@@ -423,7 +463,7 @@ Here is the full loop:
 
 10. The answers are stored in SQLite, so they remain visible later.
 
-11. The markdown file and `docs/OPEN_QUESTIONS.md` are synchronized from the latest stored records.
+11. The markdown file and `rulechain/OPEN_QUESTIONS.md` are synchronized from the latest stored records.
 
 12. When all questions are answered, the request becomes `answered`.
 
