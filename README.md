@@ -1,5 +1,7 @@
 # Salary Management Kata
 
+FastAPI salary management application with a dashboard UI, employee CRUD APIs, salary metrics, public Swagger docs, and a rulechain-driven change-request workflow.
+
 ## 🎯 What This Is
 
 This project is a FastAPI application with:
@@ -9,6 +11,29 @@ This project is a FastAPI application with:
 - a documentation-driven change-request engine
 
 In short: it manages employees, calculates deductions, shows salary metrics, and helps business analysts and stakeholders argue product logic in a civilized way before engineers start changing code.
+
+## 📦 Docker Image Overview
+
+Docker Hub image:
+- [schnarordocker/salary-management-kata](https://hub.docker.com/r/schnarordocker/salary-management-kata)
+
+This image packages:
+- the FastAPI API server
+- the dashboard UI
+- employee CRUD and salary metrics endpoints
+- Swagger/OpenAPI docs
+- the rulechain-based change-request workflow
+
+Quick run:
+
+```bash
+docker pull schnarordocker/salary-management-kata:latest
+docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
+```
+
+Open:
+- `http://127.0.0.1:8000/` for the dashboard
+- `http://127.0.0.1:8000/docs` for Swagger
 
 ## 🧰 Stack
 
