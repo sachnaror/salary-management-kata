@@ -39,7 +39,7 @@ jobs:
         run: poetry install --no-interaction --no-root --only main
 
       - name: Generate OpenAPI docs
-        run: poetry run python scripts/export_openapi.py
+        run: poetry run python -m salary_api.export_openapi
 
       - name: Verify docs artifact
         run: |

@@ -126,7 +126,7 @@ Local development Swagger and GitHub Pages Swagger are separate:
 - public GitHub Pages Swagger: `https://sachnaror.github.io/salary-management-kata/`
 
 ### What Was Added
-- [`scripts/export_openapi.py`](./scripts/export_openapi.py)
+- [`salary_api/export_openapi.py`](./salary_api/export_openapi.py)
   - exports the FastAPI OpenAPI schema directly from the app
 - [`.github/workflows/publish-api-docs.yml`](./.github/workflows/publish-api-docs.yml)
   - builds the docs on GitHub Actions and publishes them to GitHub Pages
@@ -136,7 +136,7 @@ Local development Swagger and GitHub Pages Swagger are separate:
 ### Local Generation
 
 ```bash
-poetry run python scripts/export_openapi.py
+poetry run python -m salary_api.export_openapi
 ```
 
 Generated files:
