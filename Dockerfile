@@ -11,13 +11,13 @@ WORKDIR /app
 RUN pip install --no-cache-dir "poetry==$POETRY_VERSION"
 
 COPY pyproject.toml poetry.lock* ./
-RUN poetry install --no-root --with dev
+RUN poetry install --no-root --only main
 
 COPY salary_api ./salary_api
-COPY tests ./tests
-COPY README.md pytest.ini .env.example ./
+COPY README.md .env.example ./
 COPY data ./data
 COPY logs ./logs
+COPY rulechain ./rulechain
 
 EXPOSE 8000
 

@@ -32,8 +32,8 @@ docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
 ```
 
 Open:
-- `http://127.0.0.1:8000/` for the dashboard
-- `http://127.0.0.1:8000/docs` for Swagger
+- `http://127.0.0.1:8000/` for the dashboard in Docker
+- `http://127.0.0.1:8000/docs` for Swagger in Docker
 
 ## 🧰 Stack
 
@@ -76,8 +76,8 @@ make run
 ```
 
 Open these:
-- `http://127.0.0.1:8000/` : dashboard UI
-- `http://127.0.0.1:8000/docs` : Swagger
+- `http://127.0.0.1:8001/` : dashboard UI
+- `http://127.0.0.1:8001/docs` : local Swagger
 
 
 Run tests:
@@ -105,6 +105,10 @@ docker pull schnarordocker/salary-management-kata:latest
 docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
 ```
 
+Container URLs:
+- `http://127.0.0.1:8000/` : dashboard in Docker
+- `http://127.0.0.1:8000/docs` : Swagger in Docker
+
 ## 🎬 Preview Video
 
 Left-aligned on purpose, because the dashboard already has enough drama without the README doing center-stage choreography.
@@ -116,6 +120,10 @@ Left-aligned on purpose, because the dashboard already has enough drama without 
 ## 📚 Public Swagger Docs With GitHub Pages
 
 This repo can now publish static API docs for everyone, without asking reviewers to run the app locally first.
+
+Local development Swagger and GitHub Pages Swagger are separate:
+- local app Swagger: `http://127.0.0.1:8001/docs`
+- public GitHub Pages Swagger: `https://sachnaror.github.io/salary-management-kata/`
 
 ### What Was Added
 - [`scripts/export_openapi.py`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/scripts/export_openapi.py)
@@ -141,7 +149,7 @@ Generated files:
    - generates the OpenAPI spec from the real FastAPI app
    - publishes `docs/` as a static site
 4. Your public docs URL will be:
-   - `https://<your-github-username>.github.io/<your-repo-name>/`
+   - `https://sachnaror.github.io/salary-management-kata/`
 
 This gives you:
 - public Swagger UI
@@ -301,7 +309,7 @@ That means the app is part payroll demo, part requirements traffic cop, and part
 
 ## 🖥️ Dashboard Flow
 
-At `http://127.0.0.1:8000/` the UI now has:
+At `http://127.0.0.1:8001/` the UI now has:
 
 - employee forms for create / get / update / delete
 - salary calculators and metrics forms
@@ -527,8 +535,8 @@ docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
 ```
 
 Open:
-- `http://127.0.0.1:8000/` : dashboard UI
-- `http://127.0.0.1:8000/docs` : Swagger
+- `http://127.0.0.1:8000/` : dashboard UI in Docker
+- `http://127.0.0.1:8000/docs` : Swagger in Docker
 
 ### Run With Docker Compose
 
@@ -582,6 +590,8 @@ So yes, the AI helped build the machine, but the tests are the suspicious accoun
 ## 🖼️ Screenshots
 
 Original-size, left-aligned images live in [`images/`](/Users/homesachin/Desktop/zoneone/practice/salary-management-kata/images).
+
+<img src="images/12.jpg" alt="Screenshot 13" />
 
 <img src="images/11.jpg" alt="Screenshot 11" />
 

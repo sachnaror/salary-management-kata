@@ -6,7 +6,7 @@ __pycache__/
 .coverage
 
 # Local environment files
-.env.local
+.env
 
 # SQLite data and logs
 *.sqlite3
