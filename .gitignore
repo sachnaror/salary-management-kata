@@ -18,5 +18,3 @@ logs/*.log
 .DS_Store
 .vscode/
 .idea/
-
-scripts/export_openapi.py
