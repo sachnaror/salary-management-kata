@@ -2,14 +2,14 @@
 
 This file is synchronized from change-request records.
 
-## Change Request 3: kiok
-- Question 1: Which characters should still be allowed in the full name field, for example spaces, hyphens, apostrophes, or periods?
+## Change Request 4: lorem ipsum 
+- Question 1: Should salary allow exactly two decimal places, or up to two decimal places?
   - Status: answered
-  - Why this matters: The exact allowed-character set defines the validation rule and prevents accidentally blocking legitimate real-world names.
-  - Blocked implementation areas: schema validation, employee create/update endpoints, UI validation hints, edge-case tests
+  - Why this matters: That choice changes validation rules and determines whether whole numbers remain valid without trailing decimal digits.
+  - Blocked implementation areas: salary schema validation, UI input behavior, tests, API examples
   - User answer: spaces only but inNot at the starting or at the end. If there is any space at the start or the end, just trim it.  Names can be two or three words, so spaces in between are expected. Some dots are also fine—for example, "Mr." or similar titles. Dots are acceptable if they use them, as are spaces between words. between only, 
-- Question 2: How should the system handle existing employee records that already contain numbers or special characters in the full name?
+- Question 2: If a salary value has more than two decimal places, should the system reject it or round it?
   - Status: answered
-  - Why this matters: Changing validation for new requests is straightforward, but existing data may need to be grandfathered, flagged, or cleaned up.
-  - Blocked implementation areas: existing database records, update behavior, migration strategy, regression tests
-  - User answer: Ignore what we have in existing names; for the new names only, from now onwards.
+  - Why this matters: Rounding and rejection are both valid strategies, but they lead to different financial behavior.
+  - Blocked implementation areas: create/update validation, salary calculations, metrics accuracy, regression tests
+  - User answer: sadasd

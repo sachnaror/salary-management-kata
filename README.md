@@ -535,8 +535,8 @@ docker run --rm -p 8000:8000 schnarordocker/salary-management-kata:latest
 ```
 
 Open:
-- `http://127.0.0.1:8000/` : dashboard UI in Docker
-- `http://127.0.0.1:8000/docs` : Swagger in Docker
+- `http://127.0.0.1:8001/` : dashboard UI in Docker
+- `http://127.0.0.1:8001/docs` : Swagger in Docker
 
 ### Run With Docker Compose
 
