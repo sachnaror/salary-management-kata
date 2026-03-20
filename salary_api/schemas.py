@@ -77,7 +77,7 @@ class OpenQuestionResponse(BaseModel):
 
 
 class ChangeRequestCreate(BaseModel):
-    request_date: str = Field(min_length=1)
+    request_date: str | None = None
     topic: str = Field(min_length=1)
     request_summary: str = Field(min_length=1)
 

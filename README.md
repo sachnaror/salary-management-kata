@@ -256,7 +256,8 @@ That means the app is part payroll demo, part requirements traffic cop, and part
 ### Change Request Endpoints
 - `POST /change-requests`
   - business analyst creates a new request
-  - required business fields: `request_date`, `topic`, `request_summary`
+  - required business fields: `topic`, `request_summary`
+  - `request_date` is recorded automatically when the request is submitted
   - request is stored in SQLite
   - context-aware open questions are generated immediately by the local analyzer
   - markdown change-request file is created automatically
@@ -325,13 +326,13 @@ At `http://127.0.0.1:8001/` the UI now has:
 ### Business Analyst Path
 1. Fill the change-request form.
 2. Provide only:
-   - date
    - topic
    - request summary
 3. Submit the business input.
-4. The app stores the request in SQLite.
-5. The app runs the local analyzer and generates context-aware open questions.
-6. The app writes the request into `rulechain/CHANGE_REQUESTS/`.
+4. The app records the submission date automatically.
+5. The app stores the request in SQLite.
+6. The app runs the local analyzer and generates context-aware open questions.
+7. The app writes the request into `rulechain/CHANGE_REQUESTS/`.
 
 ### Stakeholder Path
 1. Open the dashboard table.
@@ -469,42 +470,43 @@ See [rulechain/README.md](./rulechain/README.md) for the short version. Here is 
 Here is the full loop:
 
 1. Business analyst submits:
-   - request date
    - topic
    - request summary
 
-2. The app stores that request in SQLite.
+2. The app records the current date automatically.
 
-3. The app generates context-aware open questions using the local expert analyzer.
+3. The app stores that request in SQLite.
 
-4. The app stores those questions in SQLite.
+4. The app generates context-aware open questions using the local expert analyzer.
 
-5. The app writes a markdown file in `rulechain/CHANGE_REQUESTS/`.
+5. The app stores those questions in SQLite.
 
-6. The dashboard table shows the request with:
+6. The app writes a markdown file in `rulechain/CHANGE_REQUESTS/`.
+
+7. The dashboard table shows the request with:
    - ID
    - date
    - topic
    - status
    - number of questions
 
-7. Clicking the topic opens the request-summary modal.
+8. Clicking the topic opens the request-summary modal.
 
-8. Clicking the question count opens the questions modal.
+9. Clicking the question count opens the questions modal.
 
-9. Stakeholder answers the questions inside that modal.
+10. Stakeholder answers the questions inside that modal.
 
-10. The answers are stored in SQLite, so they remain visible later.
+11. The answers are stored in SQLite, so they remain visible later.
 
-11. The markdown file and `rulechain/OPEN_QUESTIONS.md` are synchronized from the latest stored records.
+12. The markdown file and `rulechain/OPEN_QUESTIONS.md` are synchronized from the latest stored records.
 
-12. When all questions are answered, the request becomes `answered`.
+13. When all questions are answered, the request becomes `answered`.
 
-13. The reviewer can generate a preview / plan.
+14. The reviewer can generate a preview / plan.
 
-14. The preview explains what would change before any code or docs are touched.
+15. The preview explains what would change before any code or docs are touched.
 
-15. A final approval button exists in the preview modal, but the repository auto-edit/apply step is still intentionally not active.
+16. A final approval button exists in the preview modal, but the repository auto-edit/apply step is still intentionally not active.
 
 That means:
 - SQLite is the live source of record

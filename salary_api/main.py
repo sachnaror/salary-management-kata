@@ -1,4 +1,4 @@
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 import logging
 from pathlib import Path
 
@@ -196,7 +196,7 @@ def create_change_request(
     db: Session = Depends(get_db),
 ) -> ChangeRequest:
     change_request = ChangeRequest(
-        request_date=payload.request_date,
+        request_date=payload.request_date or date.today().isoformat(),
         topic=payload.topic,
         requested_by="Business Analyst",
         request_summary=payload.request_summary,

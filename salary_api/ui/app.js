@@ -16,17 +16,6 @@ const finalApproveBtn = document.getElementById("finalApproveBtn");
 const changeRequestForm = document.getElementById("createChangeRequestForm");
 let activePreviewRequestId = null;
 
-function todayIsoDate() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function setDefaultChangeRequestDate() {
-  const dateInput = changeRequestForm.elements.namedItem("request_date");
-  if (dateInput && !dateInput.value) {
-    dateInput.value = todayIsoDate();
-  }
-}
-
 function showResponse(title, data) {
   responseBox.textContent = `${title}\n\n${JSON.stringify(data, null, 2)}`;
 }
@@ -291,7 +280,6 @@ changeRequestForm.addEventListener("submit", async (e) => {
   const result = await apiCall("/change-requests", {
     method: "POST",
     body: JSON.stringify({
-      request_date: form.get("request_date"),
       topic: form.get("topic"),
       request_summary: form.get("request_summary"),
     }),
@@ -299,7 +287,6 @@ changeRequestForm.addEventListener("submit", async (e) => {
   showResponse("POST /change-requests", { status: result.status, body: result.payload });
   if (result.ok) {
     e.currentTarget.reset();
-    setDefaultChangeRequestDate();
     renderOpenQuestions(result.payload);
     await refreshChangeRequests();
   }
@@ -325,8 +312,6 @@ finalApproveBtn.addEventListener("click", async () => {
     await refreshChangeRequests();
   }
 });
-
-setDefaultChangeRequestDate();
 
 document.getElementById("createEmployeeForm").addEventListener("submit", async (e) => {
   e.preventDefault();

@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import date
 
 from fastapi.testclient import TestClient
 
@@ -43,6 +44,25 @@ def test_create_change_request_generates_open_questions_and_syncs_markdown(
     assert "- Date: 2026-03-20" in contents
     assert "- Topic: Empty update validation" in contents
     assert "User answer: pending" in contents
+
+
+def test_create_change_request_defaults_request_date_to_today(
+    client: TestClient,
+    tmp_path: Path,
+) -> None:
+    settings.docs_root = str(tmp_path / "rulechain")
+
+    response = client.post(
+        "/change-requests",
+        json={
+            "topic": "Auto date",
+            "request_summary": "The request date should be recorded automatically.",
+        },
+    )
+
+    assert response.status_code == 201
+    body = response.json()
+    assert body["request_date"] == date.today().isoformat()
 
 
 def test_answering_questions_updates_records_and_markdown(
