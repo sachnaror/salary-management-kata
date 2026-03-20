@@ -113,7 +113,7 @@ Container URLs:
 
 Left-aligned on purpose, because the dashboard already has enough drama without the README doing center-stage choreography.
 
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+<a href="https://youtu.be/PS7fva6nm_w">
   <img src="./images/12.jpg" alt="Watch Salary Management Kata Preview on YouTube" width="600" style="max-width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;" />
 </a>
 
