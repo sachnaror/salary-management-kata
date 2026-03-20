@@ -19,5 +19,4 @@ logs/*.log
 .vscode/
 .idea/
 
-export_openapi.py
-script/export_openapi.py
+scripts/export_openapi.py
