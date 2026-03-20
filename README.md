@@ -130,6 +130,8 @@ Local development Swagger and GitHub Pages Swagger are separate:
   - exports the FastAPI OpenAPI schema directly from the app
 - [`.github/workflows/publish-api-docs.yml`](./.github/workflows/publish-api-docs.yml)
   - builds the docs on GitHub Actions and publishes them to GitHub Pages
+- [`.github/workflows/publish-docker-image.yml`](./.github/workflows/publish-docker-image.yml)
+  - builds and pushes Docker images to Docker Hub on every push to `main`
 
 ### Local Generation
 
@@ -154,6 +156,12 @@ Generated files:
 This gives you:
 - public Swagger UI
 - the raw OpenAPI JSON for tooling, imports, and future client generation
+
+### Required GitHub Secrets
+
+For Docker Hub auto-publish, add these repository secrets:
+- `DOCKERHUB_USERNAME`
+- `DOCKERHUB_TOKEN` (Docker Hub access token)
 
 ## ⚙️ Environment Variables
 

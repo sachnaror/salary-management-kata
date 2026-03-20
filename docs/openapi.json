@@ -645,8 +645,14 @@
       "ChangeRequestCreate": {
         "properties": {
           "request_date": {
-            "type": "string",
-            "minLength": 1,
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Request Date"
           },
           "topic": {
@@ -662,7 +668,6 @@
         },
         "type": "object",
         "required": [
-          "request_date",
           "topic",
           "request_summary"
         ],
